@@ -642,7 +642,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9db68475977ca9c4995917f8678182a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalEnemy: 40
+  totalEnemy: 3
   spawnPoint:
   - {fileID: 1656517588}
   - {fileID: 1359504774}
@@ -652,7 +652,11 @@ MonoBehaviour:
   - {fileID: 1731346768}
   - {fileID: 646425589}
   - {fileID: 174120259}
-  enemy: {fileID: 3055636478540957624, guid: 627b60038997ca14b83c55d5fd4aa348, type: 3}
+  enemy:
+  - {fileID: 3055636478540957624, guid: 627b60038997ca14b83c55d5fd4aa348, type: 3}
+  - {fileID: 3055636478540957624, guid: e6a4d4c6d671cde44a590d867ced8e8f, type: 3}
+  - {fileID: 3055636478540957624, guid: 746355c7e3e609b46a0c234579db1e33, type: 3}
+  - {fileID: 3055636478540957624, guid: 25a207a1c1a68d74ea03d2f7ca752e8c, type: 3}
 --- !u!4 &982600082
 Transform:
   m_ObjectHideFlags: 0
@@ -746,8 +750,8 @@ GameObject:
   - component: {fileID: 1613352225}
   - component: {fileID: 1613352224}
   - component: {fileID: 1613352223}
-  - component: {fileID: 1613352226}
   - component: {fileID: 1613352227}
+  - component: {fileID: 1613352226}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -847,19 +851,19 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1613352222}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &1613352227
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -872,8 +876,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14359722b7e12a5499b509e6ad0fe452, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
-  crossHair: {fileID: 0}
+  moveSpeed: 5
+  rigidbody: {fileID: 1613352226}
   animator: {fileID: 1613352223}
 --- !u!1 &1656517587
 GameObject:

@@ -67,6 +67,8 @@
     <Compile Include="Assets\Scripts\EnemySpawner.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\ShootAndPoint.cs" />
+    <Compile Include="Assets\Scripts\Wave.cs" />
+    <None Include="Assets\Wave.txt" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>D:/Tugas Kuliah/Workshop Developer Game/Semester 5/TopDownShooter2D/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>

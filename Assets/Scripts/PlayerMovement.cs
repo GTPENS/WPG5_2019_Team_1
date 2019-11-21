@@ -4,27 +4,34 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    Rigidbody2D myBody;
-    public float speed;
-    Vector2 moveVelocity;
+    public float moveSpeed = 5f;
+    public Rigidbody2D rigidbody;
+    Vector2 movement;
 
-    public GameObject crossHair;
     public Animator animator;
-    private void Start()
-    {
-        myBody = GetComponent<Rigidbody2D>();
-    }
 
     private void Update()
     {
-        animator.SetFloat("Vertical", Input.GetAxis("Vertical"));
-        Vector2 moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        moveVelocity = moveInput.normalized * speed;
+        movement.x = Input.GetAxisRaw("Horizontal");
+        movement.y = Input.GetAxisRaw("Vertical");
+        animator.SetFloat("Horizontal", movement.x);
+        animator.SetFloat("Vertical", movement.y);
+        animator.SetFloat("Speed", movement.sqrMagnitude);
+
+        FaceMouse();
     }
 
     private void FixedUpdate()
     {
-        myBody.MovePosition(myBody.position + moveVelocity * Time.fixedDeltaTime);
+        rigidbody.MovePosition(rigidbody.position + movement * moveSpeed * Time.deltaTime);
     }
 
+    void FaceMouse()
+    {
+        Vector3 mousePosition = Input.mousePosition;
+        mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
+
+        Vector2 direction = new Vector2(mousePosition.x - transform.position.x, mousePosition.y - transform.position.y);
+        transform.up = direction;
+    }
 }
