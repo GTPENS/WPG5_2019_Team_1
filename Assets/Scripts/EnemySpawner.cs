@@ -5,8 +5,14 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField]
-    private int  totalEnemy = 3;
+    private int totalEnemy;
     private int wave = 0;
+
+    private int[] redFireTotal = { 40, 38, 36, 34, 32, 30, 28, 26, 24, 22 };
+    private int[] blueFireTotal = { 0, 2, 4, 6, 7, 8, 9, 9, 9, 9 };
+    private int[] blackFireTotal = { 0, 0, 0, 0, 1, 2, 3, 4, 5, 6 };
+    private int[] whiteFireTotal = { 0, 0, 0, 0, 0, 0, 0, 1, 2, 3 };
+    
     private bool waveCleared = false;
 
     public static int getSpawnPoint;
@@ -22,14 +28,22 @@ public class EnemySpawner : MonoBehaviour
     {
         if (totalEnemy <= 0 && waveCleared)
         {
+            wave++;
             totalEnemy = 40;
             waveCleared = false;
-            wave++;
+            StartCoroutine(SpawnEnemy());
         }
     }
 
     IEnumerator SpawnEnemy()
     {
+        bool isDone = false;
+
+        int redFire = redFireTotal[wave];
+        int blueFire = blueFireTotal[wave];
+        int blackFire = blackFireTotal[wave];
+        int whiteFire = whiteFireTotal[wave];
+
         Debug.Log(totalEnemy.ToString());
         int randomSpawn = Random.Range(0, 7);
         getSpawnPoint = randomSpawn;
@@ -39,9 +53,43 @@ public class EnemySpawner : MonoBehaviour
         yield return new WaitForSeconds(randomTime);
         if (totalEnemy > 0)
         {
-            totalEnemy--;
-            Instantiate(enemy[3], spawnPos, Quaternion.identity);
+            do
+            {
+                int randomFire = Random.Range(0, 4);
+                if (randomFire == 0 && redFire > 0)
+                {
+                    Instantiate(enemy[randomFire], spawnPos, Quaternion.identity);
+                    totalEnemy--;
+                    isDone = true;
+                }
+                else if (randomFire == 1 && blueFire > 0)
+                {
+                    Instantiate(enemy[randomFire], spawnPos, Quaternion.identity);
+                    totalEnemy--;
+                    isDone = true;
+                }
+                else if (randomFire == 2 && blackFire > 0)
+                {
+                    Instantiate(enemy[randomFire], spawnPos, Quaternion.identity);
+                    totalEnemy--;
+                    isDone = true;
+                }
+                else if (randomFire == 3 && whiteFire > 0)
+                {
+                    Instantiate(enemy[randomFire], spawnPos, Quaternion.identity);
+                    totalEnemy--;
+                    isDone = true;
+                }
+                else
+                {
+                    isDone = false;
+                }
+            } while (!isDone);
             StartCoroutine(SpawnEnemy());
+        }
+        else
+        {
+            waveCleared = true;
         }
     }
 }
