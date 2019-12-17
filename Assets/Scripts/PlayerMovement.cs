@@ -6,9 +6,15 @@ public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 5f;
     public Rigidbody2D rigidbody;
+    Camera cam;
     Vector2 movement;
-
+    Vector2 mousePos;
     public Animator animator;
+
+    private void Awake()
+    {
+        cam = Camera.main;
+    }
 
     private void Update()
     {
@@ -18,20 +24,14 @@ public class PlayerMovement : MonoBehaviour
         animator.SetFloat("Vertical", movement.y);
         animator.SetFloat("Speed", movement.sqrMagnitude);
 
-        FaceMouse();
+        mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
     }
 
     private void FixedUpdate()
     {
-        rigidbody.MovePosition(rigidbody.position + movement * moveSpeed * Time.deltaTime);
-    }
-
-    void FaceMouse()
-    {
-        Vector3 mousePosition = Input.mousePosition;
-        mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
-
-        Vector2 direction = new Vector2(mousePosition.x - transform.position.x, mousePosition.y - transform.position.y);
-        transform.up = direction;
+        rigidbody.MovePosition(rigidbody.position + movement * moveSpeed * Time.fixedDeltaTime);
+        Vector2 lookDir = mousePos - rigidbody.position;
+        float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f;
+        rigidbody.rotation = angle;
     }
 }

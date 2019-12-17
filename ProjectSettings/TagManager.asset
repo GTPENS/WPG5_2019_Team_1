@@ -5,6 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - Tree
+  - Wall
+  - RedFire
+  - BlueFire
+  - BlackFire
+  - WhiteFire
+  - Hit
   layers:
   - Default
   - TransparentFX
