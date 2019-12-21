@@ -15,10 +15,6 @@ public class Enemy : MonoBehaviourPun
     float currentHealth;
     [SerializeField] private float maxHealth;
 
-    //private int waypointIndex = 0;
-
-    //public Transform[] waypoints;
-
     void Start()
     {
         waitTime = startWaitTime;
@@ -66,7 +62,7 @@ public class Enemy : MonoBehaviourPun
         Destroy(gameObject);
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Tree")
         {
@@ -74,5 +70,4 @@ public class Enemy : MonoBehaviourPun
             hurtTree.addDamage(attackPoint);
         }
     }
-    
 }

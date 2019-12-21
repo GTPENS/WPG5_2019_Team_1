@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3958832266059788898}
   - component: {fileID: -4740579826727153325}
   - component: {fileID: 6650530538521450549}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Blue
   m_TagString: BlueFire
   m_Icon: {fileID: 0}

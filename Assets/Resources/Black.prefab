@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -609478545354603896}
   - component: {fileID: -6980590326389616560}
   - component: {fileID: -9217537230169051670}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Black
   m_TagString: BlackFire
   m_Icon: {fileID: 0}

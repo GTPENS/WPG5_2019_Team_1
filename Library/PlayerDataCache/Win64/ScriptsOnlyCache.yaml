@@ -11,8 +11,6 @@ ScriptsOnlyBuild:
     - PlayerMovement
     - PlayerSync
     - Shooting
-    PhotonUnityNetworking.Utilities.dll:
-    - Photon.Pun.UtilityScripts.PhotonLagSimulationGui
     PhotonUnityNetworking.dll:
     - Photon.Pun.PhotonAnimatorView
     - Photon.Pun.PhotonTransformView
@@ -85,8 +83,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 10658}
     - Class: 114
       Script: {instanceID: 11178}
-    - Class: 114
-      Script: {instanceID: 11268}
     - Class: 114
       Script: {instanceID: 11280}
     - Class: 114
