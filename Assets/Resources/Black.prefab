@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: -609478545354603896}
   - component: {fileID: -6980590326389616560}
   - component: {fileID: -9217537230169051670}
+  - component: {fileID: -5110095743067064303}
   m_Layer: 9
   m_Name: Black
   m_TagString: BlackFire
@@ -74,7 +75,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 0
   m_Sprite: {fileID: 7909456986616878847, guid: c2ebfc5f5413d3e43913960a6f04bfae,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -109,6 +110,7 @@ MonoBehaviour:
   - {fileID: 4076319499127258518, guid: b48fe09a55b52684ea70953472571f29, type: 3}
   - {fileID: 5823873918950624145, guid: cd83e5ca53437424bbe420c14bb025e5, type: 3}
   startWaitTime: 1
+  animator: {fileID: 789253403}
   maxHealth: 3
 --- !u!95 &789253403
 Animator:
@@ -202,6 +204,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: -9217537230169051670}
+  - {fileID: -5110095743067064303}
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -220,3 +223,24 @@ MonoBehaviour:
   m_SynchronizePosition: 1
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
+--- !u!114 &-5110095743067064303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3055636478540957624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowLayerWeightsInspector: 1
+  ShowParameterInspector: 1
+  m_SynchronizeParameters:
+  - Type: 9
+    SynchronizeType: 2
+    Name: Hit
+  m_SynchronizeLayers:
+  - SynchronizeType: 0
+    LayerIndex: 0

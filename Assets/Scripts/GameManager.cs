@@ -1,23 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private HealthBar healthBar;
-    float health = 1f;
-    // Start is called before the first frame update
-    void Start()
-    {
+    public static int enemyDefeated = 0;
+
+    public Image healthBar;
+    public GameObject healthBarUI;
+    public GameObject winUI;
+    public GameObject loseUI;
+
+    public void Win()
+    { 
+        winUI.SetActive(true);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Lose()
     {
-        if(health > .01f)
-        {
-            health = health - 0.01f;
-            healthBar.SetSize(health);
-        }
+        healthBarUI.SetActive(false);
+        loseUI.SetActive(true);
     }
 }

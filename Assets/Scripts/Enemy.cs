@@ -1,19 +1,21 @@
 ﻿using Photon.Pun;
+using Photon.Pun.UtilityScripts;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviourPun
 {
-    [SerializeField] private float speed;
-    [SerializeField] private float attackPoint;
-    public Transform[] moveSpots;
-    private int randomSpot;
-    private float waitTime;
-    public float startWaitTime;
-
+    [SerializeField] float speed;
+    [SerializeField] float attackPoint;
+    [SerializeField] float maxHealth;
     float currentHealth;
-    [SerializeField] private float maxHealth;
+    float waitTime;
+    float startWaitTime;
+    int randomSpot;
+
+    public Transform[] moveSpots;
+    public Animator animator;
 
     void Start()
     {
@@ -30,8 +32,7 @@ public class Enemy : MonoBehaviourPun
     [PunRPC]
     private void EnemyMovement()
     {
-        transform.position = Vector2.MoveTowards(transform.position, moveSpots[randomSpot].position, 
-            (speed / 10) * Time.deltaTime);
+        transform.position = Vector2.MoveTowards(transform.position, moveSpots[randomSpot].position, (speed / 10) * Time.deltaTime);
         if (Vector2.Distance(transform.position, moveSpots[randomSpot].position) < 0.2f)
         {
             if (waitTime <= 0)
@@ -52,22 +53,41 @@ public class Enemy : MonoBehaviourPun
         currentHealth -= damage;
         if(currentHealth <= 0 )
         {
-            photonView.RPC("Die", RpcTarget.All);
+            Die();
         }
     }
 
-    [PunRPC]
     void Die()
     {
-        Destroy(gameObject);
+        if (PhotonNetwork.IsMasterClient)
+        {
+            GameManager.enemyDefeated++;
+            PhotonNetwork.Destroy(gameObject);
+        }
+        Debug.Log("Enemy Defeated : " + GameManager.enemyDefeated.ToString());
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Tree")
         {
-            HealthBar hurtTree = collision.gameObject.GetComponent<HealthBar>();
-            hurtTree.addDamage(attackPoint);
+            Debug.Log("Attack");
+            InvokeRepeating("Attack", 1.0f, 1.0f);
         }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Tree")
+        {
+            animator.SetBool("Hit",false);
+        }
+    }
+
+    private void Attack()
+    {
+        animator.SetBool("Hit",true);
+
+        Tree tree = GameObject.FindObjectOfType(typeof(Tree)) as Tree;
+        tree.photonView.RPC("TreeAddDamage", RpcTarget.All, attackPoint);
     }
 }

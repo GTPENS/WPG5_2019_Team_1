@@ -5,11 +5,16 @@ using UnityEngine;
 
 public class Shooting : MonoBehaviourPun
 {
-    public Transform firePoint;
-    public GameObject bulletPrefabs;
     public float bulletForce = 20f;
-    //float distance = 1f;
+    public GameObject bulletPrefabs;
+    public AudioSource musicSource;
+    public AudioClip shootFx;
+    public Transform firePoint;
 
+    private void Start()
+    {
+        musicSource.clip = shootFx;
+    }
     void Update()
     {
         if (Input.GetButtonDown("Fire1"))
@@ -24,6 +29,7 @@ public class Shooting : MonoBehaviourPun
         GameObject bullet = Instantiate(bulletPrefabs, firePoint.position, firePoint.rotation);
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         rb.AddForce(firePoint.up * bulletForce, ForceMode2D.Impulse);
+        musicSource.Play();
         Destroy(bullet, 0.2f);
     }
 }

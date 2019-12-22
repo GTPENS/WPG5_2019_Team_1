@@ -29,17 +29,13 @@ MonoBehaviour:
   RunInBackground: 1
   StartInOfflineMode: 0
   RpcList:
+  - AddDamage
   - ClickRpc
   - DestroyRpc
-  - Shoot
-  - BulletLocation
-  - RPC_Shooting
-  - RPC_Shoot
-  - SpawnEnemy
-  - Die
-  - Movement
   - EnemyMovement
-  - addDamage
-  - AddDamage
+  - Shoot
+  - ShowRound
+  - TreeAddDamage
+  - WinCondition
   DisableAutoOpenWizard: 1
   ShowSettings: 1

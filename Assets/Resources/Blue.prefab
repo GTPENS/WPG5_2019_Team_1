@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3958832266059788898}
   - component: {fileID: -4740579826727153325}
   - component: {fileID: 6650530538521450549}
+  - component: {fileID: -7317141189756885985}
   m_Layer: 9
   m_Name: Blue
   m_TagString: BlueFire
@@ -73,7 +74,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 0
   m_Sprite: {fileID: 4564248425658466013, guid: c2ebfc5f5413d3e43913960a6f04bfae,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -100,6 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 7
   attackPoint: 0
+  maxHealth: 3
   moveSpots:
   - {fileID: 2377249815736039570, guid: a2b2a013b0497834fb0d91a6032a5424, type: 3}
   - {fileID: 3072852870914630167, guid: bada434a791d00b40be99a928a579135, type: 3}
@@ -107,8 +109,7 @@ MonoBehaviour:
   - {fileID: 1484924216325507329, guid: 160087e8c9f94d14cbae491f60338b0e, type: 3}
   - {fileID: 4076319499127258518, guid: b48fe09a55b52684ea70953472571f29, type: 3}
   - {fileID: 5823873918950624145, guid: cd83e5ca53437424bbe420c14bb025e5, type: 3}
-  startWaitTime: 1
-  maxHealth: 3
+  animator: {fileID: 65818401}
 --- !u!95 &65818401
 Animator:
   serializedVersion: 3
@@ -180,6 +181,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   ObservedComponents:
   - {fileID: 6650530538521450549}
+  - {fileID: -7317141189756885985}
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -198,3 +200,24 @@ MonoBehaviour:
   m_SynchronizePosition: 1
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
+--- !u!114 &-7317141189756885985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3055636478540957624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowLayerWeightsInspector: 1
+  ShowParameterInspector: 1
+  m_SynchronizeParameters:
+  - Type: 9
+    SynchronizeType: 2
+    Name: Hit
+  m_SynchronizeLayers:
+  - SynchronizeType: 0
+    LayerIndex: 0
