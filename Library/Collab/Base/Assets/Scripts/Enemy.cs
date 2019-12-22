@@ -1,21 +1,19 @@
 ﻿using Photon.Pun;
-using Photon.Pun.UtilityScripts;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviourPun
 {
-    [SerializeField] float speed;
-    [SerializeField] float attackPoint;
-    [SerializeField] float maxHealth;
-    float currentHealth;
-    float waitTime;
-    float startWaitTime;
-    int randomSpot;
-
+    [SerializeField] private float speed;
+    [SerializeField] private float attackPoint;
     public Transform[] moveSpots;
-    public Animator animator;
+    private int randomSpot;
+    private float waitTime;
+    public float startWaitTime;
+
+    float currentHealth;
+    [SerializeField] private float maxHealth;
 
     void Start()
     {
@@ -32,19 +30,21 @@ public class Enemy : MonoBehaviourPun
     [PunRPC]
     private void EnemyMovement()
     {
-        transform.position = Vector2.MoveTowards(transform.position, moveSpots[randomSpot].position, (speed / 10) * Time.deltaTime);
-        if (Vector2.Distance(transform.position, moveSpots[randomSpot].position) < 0.2f)
-        {
-            if (waitTime <= 0)
-            {
-                randomSpot = Random.Range(0, moveSpots.Length);
-                waitTime = startWaitTime;
-            }
-            else
-            {
-                waitTime -= Time.deltaTime;
-            }
-        }
+        //transform.position = Vector2.MoveTowards(transform.position, moveSpots[randomSpot].position, 
+        //    (speed / 10) * Time.deltaTime);
+        transform.position = GameObject.Find("Tree").transform.position;
+        //if (Vector2.Distance(transform.position, moveSpots[randomSpot].position) < 0.2f)
+        //{
+        //    if (waitTime <= 0)
+        //    {
+        //        randomSpot = Random.Range(0, moveSpots.Length);
+        //        waitTime = startWaitTime;
+        //    }
+        //    else
+        //    {
+        //        waitTime -= Time.deltaTime;
+        //    }
+        //}
     }
 
     [PunRPC]
@@ -54,35 +54,20 @@ public class Enemy : MonoBehaviourPun
         if(currentHealth <= 0 )
         {
             photonView.RPC("Die", RpcTarget.All);
-            
         }
     }
 
     [PunRPC]
     void Die()
     {
-        if (photonView.IsMine)
-        {
-            GameManager.enemyDefeated++;
-        }
-        Debug.Log("Enemy Defeated : " + GameManager.enemyDefeated.ToString());
         Destroy(gameObject);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Tree")
         {
-            Debug.Log("Attack");
-            InvokeRepeating("Attack", 1.0f, 1.0f);
+            Debug.Log("Tabrak");
         }
-    }
-
-    private void Attack()
-    {
-        animator.SetTrigger("Hit");
-
-        Tree tree = GameObject.FindObjectOfType(typeof(Tree)) as Tree;
-        tree.photonView.RPC("TreeAddDamage", RpcTarget.All, attackPoint);
     }
 }

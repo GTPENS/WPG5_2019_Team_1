@@ -11,6 +11,8 @@ ScriptsOnlyBuild:
     - PlayerSync
     - Shooting
     - Tree
+    PhotonUnityNetworking.Editor.dll:
+    - Photon.Pun.PunSceneSettings
     PhotonUnityNetworking.dll:
     - Photon.Pun.PhotonAnimatorView
     - Photon.Pun.PhotonTransformView
@@ -343,7 +345,7 @@ ScriptsOnlyBuild:
     className: TMP_InputField
   - hash:
       serializedVersion: 2
-      Hash: 6fbb8efe405d26ab7f33ff5488fa8f38
+      Hash: d654a49a33f5d9813a9aefd3aa20ac40
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerMovement
@@ -517,7 +519,7 @@ ScriptsOnlyBuild:
     className: EnemySpawner
   - hash:
       serializedVersion: 2
-      Hash: 58be7caca965038d5afd896802385de5
+      Hash: 332954b781a7fff11dfc1c8ae6a18722
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Shooting
@@ -909,4 +911,5 @@ ScriptsOnlyBuild:
   scenePathNames:
   - Assets/Scenes/Lobby.unity
   - Assets/Scenes/Gameplay.unity
-  playerPath: D:/Unity Project/Water Crot/TopDownShooter2D.exe
+  playerPath: D:/Tugas Kuliah/Workshop Developer Game/Semester 5/TopDownShooter2D/TopDownShooter2D/Build
+    Versions/TopDownShooter2D.exe

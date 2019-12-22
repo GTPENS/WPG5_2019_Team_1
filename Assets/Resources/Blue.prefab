@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 7
-  attackPoint: 0
+  attackPoint: 2
   maxHealth: 3
   moveSpots:
   - {fileID: 2377249815736039570, guid: a2b2a013b0497834fb0d91a6032a5424, type: 3}

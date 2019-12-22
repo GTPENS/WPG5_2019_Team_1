@@ -44,7 +44,7 @@ public class EnemySpawner : MonoBehaviourPun
         
         if (totalEnemy <= 0 && GameManager.enemyDefeated >= 20)
         {
-            if (wave < 1)
+            if (wave < 9)
             {
                 wave++;
                 GameManager.enemyDefeated = 0;
